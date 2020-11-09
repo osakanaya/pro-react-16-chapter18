@@ -16,13 +16,13 @@ export class Selector extends Component {
                         <div><Link to="/data/">Data - Slash</Link></div>
                         <div><Link to="/data/one">Link #1</Link></div>
                         <div><Link to="/data/two">Link #2</Link></div>
+                        <div><Link to="/data/three">Link #3</Link></div>
                         <div><Link to="/people/bob">Bob</Link></div>
+                        <div><Link to="/people/alice">Alice</Link></div>
                     </div>
                     <div className="col">
-                        <Route path={ ["/data/one", "/people/bob"] } exact={ true }
+                        <Route path={ ["/data/(one|three)", "/people/b*"] }
                             render={ () => this.renderMessage("Route #1") } />
-                        <Route path={ ["/data", "/people"] } 
-                            render={ () => this.renderMessage("Route #2") } />
                     </div>
                 </div>            
             </div>
