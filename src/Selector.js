@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Link, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, NavLink, Route, Switch, Redirect } from "react-router-dom";
 import { ProductDisplay } from "./ProductDisplay";
 import { SupplierDisplay } from "./SupplierDisplay";
 
@@ -12,10 +12,10 @@ export class Selector extends Component {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-2">
-                        <Link className="m-2 btn btn-block btn-primary" to="/">Default URL</Link>
-                        <Link className="m-2 btn btn-block btn-primary" to="/products">Products</Link>
-                        <Link className="m-2 btn btn-block btn-primary" to="/suppliers">Suppliers</Link>
-                        <Link className="m-2 btn btn-block btn-primary" to="/old/data">Old Link</Link>
+                        <NavLink className="m-2 btn btn-block btn-primary" activeClassName="active" to="/">Default URL</NavLink>
+                        <NavLink className="m-2 btn btn-block btn-primary" activeClassName="active" to="/products">Products</NavLink>
+                        <NavLink className="m-2 btn btn-block btn-primary" activeClassName="active" to="/suppliers">Suppliers</NavLink>
+                        <NavLink className="m-2 btn btn-block btn-primary" activeClassName="active" to="/old/data">Old Link</NavLink>
                     </div>
                     <div className="col">
                         <Switch>
