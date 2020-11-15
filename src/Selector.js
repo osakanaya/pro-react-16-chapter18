@@ -19,12 +19,14 @@ export class Selector extends Component {
                             activeClassName="active" to="/info/match">Match</NavLink>
                         <NavLink className="m-2 btn btn-block btn-primary"
                             activeClassName="active" to="/info/location">Location</NavLink>
+                        <NavLink className="m-2 btn btn-block btn-primary"
+                            activeClassName="active" to="/info">All Info</NavLink>
                     </div>
                     <div className="col">
                         <Switch>
                             <Route path="/products" component={ ProductDisplay } />
                             <Route path="/suppliers" component={ SupplierDisplay } />
-                            <Route path="/info/:dataType" component={ RouteInfo } />
+                            <Route path="/info/:dataType?" component={ RouteInfo } />
                             <Redirect to="/products" />
                         </Switch>
                     </div>
