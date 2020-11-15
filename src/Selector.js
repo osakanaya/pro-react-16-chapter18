@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect, withRouter } from "react-router-dom";
 import { ProductDisplay } from "./ProductDisplay";
 import { SupplierDisplay } from "./SupplierDisplay";
 import { RouteInfo } from "./routing/RouteInfo";
 import { ToggleLink } from "./routing/ToggleLink";
+
+const RouterInfoHOC = withRouter(RouteInfo);
 
 export class Selector extends Component {
 
@@ -19,6 +21,7 @@ export class Selector extends Component {
                         <ToggleLink to="/info" exact={ true }>All Info</ToggleLink>
                     </div>
                     <div className="col">
+                        <RouterInfoHOC />
                         <Switch>
                             <Route path="/products" component={ ProductDisplay } />
                             <Route path="/suppliers" component={ SupplierDisplay } />
