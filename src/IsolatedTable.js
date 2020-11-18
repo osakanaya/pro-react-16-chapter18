@@ -1,9 +1,22 @@
 import React, { Component } from "react";
+import { RestDataSource } from "./webservice/RestDataSource";
 
 export class IsolatedTable extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            products: []
+        };
+        this.dataSource = new RestDataSource("http://localhost:3500/api/products");
+    }
+
+    componentDidMount() {
+        this.dataSource.GetData(data => this.setState({ products: data }));
+    }
+
     render() {
         return <table className="table table-sm table-striped table-bordered">
-            <thaed>
+            <thead>
                 <tr>
                     <th colSpan="5" className="bg-info text-white text-center h4 p-2">
                         (Isolated) Products
@@ -11,15 +24,22 @@ export class IsolatedTable extends Component {
                 </tr>
                 <tr>
                     <th>ID</th><th>Name</th><th>Category</th>
-                    <th className="text-right">Price</th>
+                    <th className="tet-right">Price</th>
                     <th></th>
                 </tr>
-            </thaed>
+            </thead>
             <tbody>
-                <tr>
-                    <td colSpan="5" className="text-center p-2">No Data</td>
-                </tr>
-            </tbody>
+                {
+                    this.state.products.map(p => <tr key={ p.id }>
+                        <td>{ p.id }</td>
+                        <td>{ p.name }</td>
+                        <td>{ p.category }</td>
+                        <td className="text-right">
+                            ${ Number(p.price).toFixed(2) }
+                        </td>
+                    </tr>)
+                }
+        </tbody>
         </table>
     }
 }
