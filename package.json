@@ -17,10 +17,12 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm-run-all --parallel reactstart json",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "reactstart": "react-scripts start",
+    "json": "json-server --p 3500 -r api.routes.json restData.js"
   },
   "eslintConfig": {
     "extends": [
