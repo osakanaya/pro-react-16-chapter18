@@ -7,7 +7,8 @@ import { withRouter } from "react-router-dom";
 export const EditorConnector = (dataType, presentationComponent) => {
     const mapStateToProps = (storeData, ownProps) => {
         const mode = ownProps.match.params.mode;
-        const id = Number(ownProps.match.params.id);
+//        const id = Number(ownProps.match.params.id);
+        const id = ownProps.match.params.id;
         return {
             editing: mode === "edit" || mode === "create",
             product: (storeData.modelData[PRODUCTS].find(p => p.id === id)) || {},
