@@ -1,18 +1,21 @@
 import React, { Component } from "react";
-import { Provider } from "react-redux";
-import dataStore from "./store";
+//import { Provider } from "react-redux";
+//import dataStore from "./store";
 import { Selector } from "./Selector";
 //import { ProductDisplay } from "./ProductDisplay";
 //import { SupplierDisplay } from "./SupplierDisplay";
-import { PRODUCTS, SUPPLIERS } from "./store/dataTypes";
+//import { PRODUCTS, SUPPLIERS } from "./store/dataTypes";
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
+
+const client = new ApolloClient({
+  uri : "http://localhost:3600/graphql"
+});
 
 export default class App extends Component {
   render() {
-    return <Provider store={ dataStore }>
-            <Selector>
-              <data name="Products" datatype={ PRODUCTS } />
-              <data name="Suppliers" datatype={ SUPPLIERS } />
-            </Selector>
-          </Provider>
-  }
+    return <ApolloProvider client={ client }>
+              <Selector />
+            </ApolloProvider>
+    };
 }
