@@ -15,6 +15,15 @@ export const GraphQLTable = () => {
             this.editCallback = (item) => this.props.history.push(`/products/edit/${item.id}`);
         }
 
+        removeItemFromCache(cache, mutationResult) {
+            const deletedId = mutationResult.data[mutations.products.delete.name];
+            const data = cache.readQuery({ query: getAll })[queries.products.getAll.name];
+            cache.writeQuery({
+                query: getAll,
+                data:  { products: data.filter(item => item.id !== deletedId) }
+            });
+        }
+
         render() {
             return <Query query={ getAll }>
                 {({ loading, data, refetch }) => {
@@ -23,7 +32,7 @@ export const GraphQLTable = () => {
                                 Loading...
                             </h5>
                         } else {
-                            return <Mutation mutation={ deleteItem } refetchQueries={ () => [{ query: getAll }] }>
+                            return <Mutation mutation={ deleteItem } update={ this.removeItemFromCache }>
                                 { doDelete => 
                                     <React.Fragment>
                                         <ProductTable products={ data.products }
