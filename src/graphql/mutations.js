@@ -22,7 +22,7 @@ export const products = {
 export const suppliers = {
     store: {
         name: "storeSupplier",
-        graphql: `mutation ($id: ID, $name: String!, $city: String!, $products: [Int]]) {
+        graphql: `mutation ($id: ID, $name: String!, $city: String!, $products: [Int]) {
             storeSupplier(id: $id, name: $name, city: $city, products: $products) {
                 id
                 name
